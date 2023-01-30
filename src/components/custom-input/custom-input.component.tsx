@@ -12,4 +12,6 @@ const CustomInput: FunctionComponent<CustomInputProps> = React.forwardRef(
   }
 )
 
+CustomInput.displayName = 'CustomInput'
+
 export default CustomInput
