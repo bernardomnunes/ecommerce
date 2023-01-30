@@ -1,19 +1,18 @@
 import Category from '../../types/category.types'
-
+import './category-item.styles'
+import { CategoryItemContainer, CategoryName } from './category-item.styles'
 interface CategoryItemProps {
   category: Category
 }
 
 function CategoryItem({ category }: CategoryItemProps) {
   return (
-    <div
-      className="category-item-container"
-      style={{ backgroundImage: `url('${category.imageUrl}')` }}>
-      <div className="category-name-container">
+    <CategoryItemContainer backgroundImage={category.imageUrl}>
+      <CategoryName>
         <p>{category.displayName}</p>
         <p>Explorar</p>
-      </div>
-    </div>
+      </CategoryName>
+    </CategoryItemContainer>
   )
 }
 
