@@ -27,8 +27,6 @@ function LoginPage() {
     console.log({ data })
   }
 
-  console.log({ errors })
-
   return (
     <>
       <Header />
@@ -70,6 +68,7 @@ function LoginPage() {
             <CustomInput
               hasError={!!errors?.password}
               placeholder="Digite sua senha"
+              type="password"
               {...register('password', { required: true })}
             />
 
