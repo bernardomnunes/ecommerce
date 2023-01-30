@@ -1,3 +1,4 @@
+import { useForm } from 'react-hook-form'
 import { BsGoogle } from 'react-icons/bs'
 import { FiLogIn } from 'react-icons/fi'
 
@@ -14,6 +15,18 @@ import {
 } from './login.styles'
 
 function LoginPage() {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit
+  } = useForm()
+
+  const handleSubmitPress = (data: any) => {
+    console.log({ data })
+  }
+
+  console.log({ errors })
+
   return (
     <>
       <Header />
@@ -29,13 +42,29 @@ function LoginPage() {
           <LoginSubtitle>ou entre com o seu e-mail</LoginSubtitle>
 
           <LoginInputContainer>
-            <CustomInput placeholder="Digite seu e-mail" />
-          </LoginInputContainer>
-          <LoginInputContainer>
-            <CustomInput placeholder="Digite sua senha" />
+            <p>E-mail</p>
+            <CustomInput
+              hasError={!!errors?.email}
+              placeholder="Digite seu e-mail"
+              {...register('email', { required: true })}
+            />
           </LoginInputContainer>
 
-          <CustomButton startIcon={<FiLogIn size={18} />}>Entrar</CustomButton>
+          <LoginInputContainer>
+            <p>Senha</p>
+            <CustomInput
+              hasError={!!errors?.password}
+              placeholder="Digite sua senha"
+              {...register('password', { required: true })}
+            />
+          </LoginInputContainer>
+
+          <CustomButton
+            startIcon={<FiLogIn size={18} />}
+            onClick={() => handleSubmit(handleSubmitPress)()}>
+            {/* O handleSubmit so vai chamar o handleSubmitPress quando todos os campos forem validos */}
+            Entrar
+          </CustomButton>
         </LoginContent>
       </LoginContainer>
     </>
